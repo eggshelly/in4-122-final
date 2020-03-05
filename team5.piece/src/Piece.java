@@ -6,7 +6,7 @@ public class Piece {
     //color is randomly generated total of 5 colors (0-4)
     protected int color;
     private static int TOTAL_NUM_COLOR = 5;
-    public boolean settled;
+    public boolean settled = false;
 
     public Piece(int row, int col){
         this.row = row;
@@ -21,17 +21,17 @@ public class Piece {
 
     //makes the piece fall down one
     public void fall(){
-
+        row++;
     }
 
-    //
+    //?? TODO
     public void update(){
-
+        fall();
     }
 
     //updates the piece when landed, changes settled
     public void landed(){
-
+        settled = true;
     }
 
     public int getRow(){return row;}
