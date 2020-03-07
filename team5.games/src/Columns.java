@@ -9,9 +9,8 @@ public class Columns {
     private boolean isMatched;
     private Faller faller;
     private ArrayList<ArrayList<Integer>> matched;
-    private String[][] board;
-    private static final String EMPTY = "0";
-    private static final String[] colors = {"S", "T", "V", "W", "X", "Y", "Z"};
+    private int[][] board;
+    private static final int EMPTY = 0;
 
     public Columns()
     {
@@ -21,7 +20,7 @@ public class Columns {
         isMatched = false;
         faller = null;
         matched = new ArrayList<ArrayList<Integer>>();
-        board = new String[rows][cols];
+        board = new int[rows][cols];
         initializeBoard();
     }
 
@@ -55,8 +54,7 @@ public class Columns {
                 if (command.equalsIgnoreCase("F")) {
                     Random rand = new Random();
                     int randCol = rand.nextInt(cols) + 1;
-                    String[] randColors = {colors[rand.nextInt(7)], colors[rand.nextInt(7)],
-                            colors[rand.nextInt(7)]};
+                    int[] randColors = {rand.nextInt(5)+1, rand.nextInt(5)+1, rand.nextInt(5)+1};
                     initializeFaller(randCol, randColors);
                     printBoard();
                 }
@@ -98,7 +96,7 @@ public class Columns {
         }
     }
 
-    private void initializeFaller(int col, String[] colors)
+    private void initializeFaller(int col, int[] colors)
     {
         faller = new Faller(col-1, colors);
         board[0][col-1] = faller.bottom_color;
@@ -135,7 +133,7 @@ public class Columns {
         {
             if (isValidRow(faller.row-2))
             {
-                String tempColor = board[faller.row][faller.column];
+                int tempColor = board[faller.row][faller.column];
                 faller.bottom_color = board[faller.row][faller.column] =
                         board[faller.row-1][faller.column];
                 faller.middle_color = board[faller.row-1][faller.column] =
@@ -152,7 +150,7 @@ public class Columns {
             if (isValidRow(faller.row-2))
             {
                 if (isValidCol(faller.column - 1)) {
-                    if (board[faller.row][faller.column - 1].equals(EMPTY)) {
+                    if (board[faller.row][faller.column - 1] == EMPTY) {
                         board[faller.row][faller.column - 1] = faller.bottom_color;
                         emptyMovedCell(faller.column, faller.bottom_color);
                         board[faller.row - 1][faller.column - 1] = faller.middle_color;
@@ -176,7 +174,7 @@ public class Columns {
             if (isValidRow(faller.row-2))
             {
                 if (isValidCol(faller.column + 1)) {
-                    if (board[faller.row][faller.column + 1].equals(EMPTY)) {
+                    if (board[faller.row][faller.column + 1] == EMPTY) {
                         board[faller.row][faller.column + 1] = faller.bottom_color;
                         emptyMovedCell(faller.column, faller.bottom_color);
                         board[faller.row - 1][faller.column + 1] = faller.middle_color;
@@ -195,9 +193,9 @@ public class Columns {
 
     private int matchFound(int row, int col, int rowdelta, int coldelta)
     {
-        String start_cell = board[row][col];
+        int start_cell = board[row][col];
         int counter = 0;
-        if (start_cell.equals(EMPTY))
+        if (start_cell == EMPTY)
         {
             return counter;
         }
@@ -207,7 +205,7 @@ public class Columns {
             {
                 if (!isValidRow(row + rowdelta * counter) ||
                         !isValidCol(col + coldelta * counter) ||
-                        !board[row + rowdelta * counter][col + coldelta * counter].equals(start_cell) ||
+                        board[row + rowdelta * counter][col + coldelta * counter] != start_cell ||
                         isFalling())
                 {
                     break;
@@ -369,14 +367,14 @@ public class Columns {
             {
                 if (isValidRow(i+1))
                 {
-                    if (board[i+1][j].equals(EMPTY))
+                    if (board[i+1][j] == EMPTY)
                     {
                         board[i+1][j] = board[i][j];
                         board[i][j] = EMPTY;
 
                         if (isValidRow(i-1))
                         {
-                            if (!board[i-1][j].equals(EMPTY))
+                            if (board[i-1][j] != EMPTY)
                             {
                                 board[i][j] = board[i-1][j];
                                 board[i-1][j] = EMPTY;
@@ -429,7 +427,7 @@ public class Columns {
         }
     }
 
-    private void emptyMovedCell(int col, String color)
+    private void emptyMovedCell(int col, int color)
     {
         if (board[faller.row][col] == color)
         {
@@ -450,8 +448,8 @@ public class Columns {
         {
             if (isValidRow(faller.row+1))
             {
-                return (board[rows-1][faller.column].equals(EMPTY) ||
-                        board[faller.row+1][faller.column].equals(EMPTY));
+                return (board[rows-1][faller.column] == EMPTY ||
+                        board[faller.row+1][faller.column] == EMPTY);
             }
         }
         return false;
@@ -482,7 +480,7 @@ public class Columns {
         {
             if (isValidRow(faller.row+1))
             {
-                return (!board[faller.row+1][faller.column].equals(EMPTY)
+                return (board[faller.row+1][faller.column] != EMPTY
                 && !isValidRow(faller.row-2));
             }
         }
@@ -528,13 +526,13 @@ public class Columns {
     private void printUnmatchedCells(int row, int col)
     {
         String chars = "   ";
-        if (board[row][col].equals(EMPTY))
+        if (board[row][col] == EMPTY)
         {
             System.out.print(chars);
         }
-        else if (!board[row][col].equals(EMPTY))
+        else if (board[row][col] != EMPTY)
         {
-            String cell = board[row][col];
+            int cell = board[row][col];
             if (fallerExists())
             {
                 if (col == faller.column && row <= faller.row)
@@ -549,7 +547,7 @@ public class Columns {
                     }
                 }
             }
-            System.out.print(chars.charAt(0) + cell + chars.charAt(1));
+            System.out.print(chars.charAt(0) + Integer.toString(cell) + chars.charAt(1));
         }
     }
 
@@ -557,8 +555,8 @@ public class Columns {
     {
         if (board[row][col] == getMatchedCell())
         {
-            String cell = board[row][col];
-            System.out.print('*' + cell + '*');
+            int cell = board[row][col];
+            System.out.print('*' + Integer.toString(cell) + '*');
         }
         else
         {
@@ -566,9 +564,9 @@ public class Columns {
         }
     }
 
-    private String getMatchedCell()
+    private int getMatchedCell()
     {
-        String cell = "";
+        int cell = 0;
         if (hasMatch())
         {
             for (ArrayList<Integer> match: matched)

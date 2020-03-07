@@ -1,11 +1,11 @@
 public class Faller {
-    String bottom_color;
-    String middle_color;
-    String top_color;
+    int bottom_color;
+    int middle_color;
+    int top_color;
     int column;
     int row;
 
-    Faller(int col, String[] colors)
+    Faller(int col, int[] colors)
     {
         bottom_color = colors[2];
         middle_color = colors[1];
