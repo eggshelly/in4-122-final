@@ -111,6 +111,11 @@ public class Columns {
         return matched.size();
     }
 
+    public ArrayList<ArrayList<Integer>> getMatched()
+    {
+        return matched;
+    }
+
     public void initializeBoard()
     {
         for (int i = 0; i < rows; i++)

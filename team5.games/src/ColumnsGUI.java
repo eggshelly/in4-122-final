@@ -1,6 +1,7 @@
 import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 import java.util.Random;
 
 public class ColumnsGUI {
@@ -54,13 +55,14 @@ public class ColumnsGUI {
             public void actionPerformed(ActionEvent e) {
                 if (game.getNumMatched() > 0)
                 {
+                    timer.setDelay(20000);
                     game.deleteMatched();
+                    timer.setDelay(500);
                 }
-                else
-                {
-                    game.dropFaller();
-                    game.markMatched();
-                }
+
+                game.dropFaller();
+                game.markMatched();
+
                 boardPanel.updateUI();
                 boardPanel.removeAll();
                 setBoardPanel();
@@ -126,13 +128,13 @@ public class ColumnsGUI {
                             {
                                 if (game.getNumMatched() > 0)
                                 {
+                                    timer.setDelay(20000);
                                     game.deleteMatched();
+                                    timer.setDelay(500);
                                 }
-                                else
-                                {
-                                    game.dropFaller();
-                                    game.markMatched();
-                                }
+
+                                game.dropFaller();
+                                game.markMatched();
                             }
 
                             if (game.isGameOver())
@@ -167,6 +169,18 @@ public class ColumnsGUI {
             {
                 JPanel piecePanel = new JPanel();
                 piecePanel.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 1));
+
+                if (game.getNumMatched() > 0)
+                {
+                    for (ArrayList<Integer> match: game.getMatched())
+                    {
+                        if (i == match.get(0) && j == match.get(1))
+                        {
+                            piecePanel.setBorder(BorderFactory.createLineBorder(Color.WHITE, 5));
+                        }
+                    }
+                }
+
                 if (game.getCell(i, j) ==  0)
                 {
                     piecePanel.setBackground(Color.BLACK);
