@@ -7,6 +7,7 @@ public class Columns {
     private int cols;
     private boolean changed;
     private boolean isMatched;
+    private boolean frozen;
     private ColumnsPiece faller;
     private ArrayList<ArrayList<Integer>> matched;
     private int[][] board;
@@ -18,6 +19,7 @@ public class Columns {
         cols = 6;
         changed = false;
         isMatched = false;
+        frozen = false;
         faller = null;
         matched = new ArrayList<ArrayList<Integer>>();
         board = new int[rows][cols];
@@ -84,7 +86,32 @@ public class Columns {
         }
     }
 
-    private void initializeBoard()
+    public int getCell(int row, int col)
+    {
+        return board[row][col];
+    }
+
+    public int getRows()
+    {
+        return rows;
+    }
+
+    public int getCols()
+    {
+        return cols;
+    }
+
+    public boolean isFrozen()
+    {
+        return frozen;
+    }
+
+    public int getNumMatched()
+    {
+        return matched.size();
+    }
+
+    public void initializeBoard()
     {
         for (int i = 0; i < rows; i++)
         {
@@ -95,13 +122,14 @@ public class Columns {
         }
     }
 
-    private void initializeFaller(int col)
+    public void initializeFaller(int col)
     {
+        frozen = false;
         faller = new ColumnsPiece(col-1);
         board[0][col-1] = faller.getBottomColor();
     }
 
-    private void dropFaller()
+    public void dropFaller()
     {
         if (fallerExists())
         {
@@ -126,7 +154,7 @@ public class Columns {
         }
     }
 
-    private void rotateFaller()
+    public void rotateFaller()
     {
         if (fallerExists())
         {
@@ -141,7 +169,7 @@ public class Columns {
         }
     }
 
-    private void moveFallerLeft()
+    public void moveFallerLeft()
     {
         if (fallerExists())
         {
@@ -165,7 +193,7 @@ public class Columns {
         }
     }
 
-    private void moveFallerRight()
+    public void moveFallerRight()
     {
         if (fallerExists())
         {
@@ -323,7 +351,7 @@ public class Columns {
         }
     }
 
-    private void markMatched()
+    public void markMatched()
     {
         handleHorizontalMatch();
         handleRightDiagonalMatch();
@@ -331,7 +359,7 @@ public class Columns {
         handleLeftDiagonalMatch();
     }
 
-    private void deleteMatched()
+    public void deleteMatched()
     {
         if (hasMatch())
         {
@@ -392,16 +420,18 @@ public class Columns {
             {
                 addFallerToBoard();
                 faller = null;
+                frozen = true;
             }
             if (hasLanded() && hasChanged())
             {
                 addFallerToBoard();
                 faller = null;
+                frozen = true;
             }
         }
     }
 
-    private void handleGameOver()
+    public void handleGameOver()
     {
         if (isGameOver())
         {
@@ -472,7 +502,7 @@ public class Columns {
         return false;
     }
 
-    private boolean isGameOver()
+    public boolean isGameOver()
     {
         if (fallerExists() && hasLanded())
         {
