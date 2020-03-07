@@ -3,7 +3,7 @@ import java.util.Random;
 public class Piece {
     protected int row;
     protected int col;
-    //color is randomly generated total of 5 colors (0-4)
+    //color is randomly generated total of 5 colors (1-5)
     protected int color;
     private static int TOTAL_NUM_COLOR = 5;
     public boolean settled = false;
@@ -13,6 +13,7 @@ public class Piece {
         this.col = col;
         this.color = generateColor();
     }
+
     public Piece(int col){
         this.row = 0;
         this.col = col;
@@ -39,8 +40,8 @@ public class Piece {
     public int getColor(){return color;}
     public int generateColor() {
         Random rand = new Random();
-        // Generate random integers in range 0 to 4 (inclusive)
-        return rand.nextInt(TOTAL_NUM_COLOR);
+        // Generate random integers in range 1 to 5 (inclusive)
+        return rand.nextInt(TOTAL_NUM_COLOR)+1;
     }
 
 }

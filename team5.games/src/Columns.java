@@ -7,7 +7,7 @@ public class Columns {
     private int cols;
     private boolean changed;
     private boolean isMatched;
-    private Faller faller;
+    private ColumnsPiece faller;
     private ArrayList<ArrayList<Integer>> matched;
     private int[][] board;
     private static final int EMPTY = 0;
@@ -54,8 +54,7 @@ public class Columns {
                 if (command.equalsIgnoreCase("F")) {
                     Random rand = new Random();
                     int randCol = rand.nextInt(cols) + 1;
-                    int[] randColors = {rand.nextInt(5)+1, rand.nextInt(5)+1, rand.nextInt(5)+1};
-                    initializeFaller(randCol, randColors);
+                    initializeFaller(randCol);
                     printBoard();
                 }
                 if (command.equalsIgnoreCase("R"))
@@ -96,10 +95,10 @@ public class Columns {
         }
     }
 
-    private void initializeFaller(int col, int[] colors)
+    private void initializeFaller(int col)
     {
-        faller = new Faller(col-1, colors);
-        board[0][col-1] = faller.bottom_color;
+        faller = new ColumnsPiece(col-1);
+        board[0][col-1] = faller.getBottomColor();
     }
 
     private void dropFaller()
@@ -109,15 +108,15 @@ public class Columns {
             if (isFalling())
             {
                 faller.row++;
-                board[faller.row][faller.column] = faller.bottom_color;
-                board[faller.row-1][faller.column] = faller.middle_color;
+                board[faller.row][faller.col] = faller.getBottomColor();
+                board[faller.row-1][faller.col] = faller.getMiddleColor();
                 if (isValidRow(faller.row-2))
                 {
-                    board[faller.row-2][faller.column] = faller.top_color;
+                    board[faller.row-2][faller.col] = faller.getTopColor();
                 }
                 if (isValidRow(faller.row-3))
                 {
-                    board[faller.row-3][faller.column] = EMPTY;
+                    board[faller.row-3][faller.col] = EMPTY;
                 }
             }
             else if (hasLanded())
@@ -133,12 +132,11 @@ public class Columns {
         {
             if (isValidRow(faller.row-2))
             {
-                int tempColor = board[faller.row][faller.column];
-                faller.bottom_color = board[faller.row][faller.column] =
-                        board[faller.row-1][faller.column];
-                faller.middle_color = board[faller.row-1][faller.column] =
-                        board[faller.row-2][faller.column];
-                faller.top_color = board[faller.row-2][faller.column] = tempColor;
+                faller.rotate();
+                int tempColor = board[faller.row][faller.col];
+                board[faller.row][faller.col] = board[faller.row-1][faller.col];
+                board[faller.row-1][faller.col] = board[faller.row-2][faller.col];
+                board[faller.row-2][faller.col] = tempColor;
             }
         }
     }
@@ -149,15 +147,15 @@ public class Columns {
         {
             if (isValidRow(faller.row-2))
             {
-                if (isValidCol(faller.column - 1)) {
-                    if (board[faller.row][faller.column - 1] == EMPTY) {
-                        board[faller.row][faller.column - 1] = faller.bottom_color;
-                        emptyMovedCell(faller.column, faller.bottom_color);
-                        board[faller.row - 1][faller.column - 1] = faller.middle_color;
-                        emptyMovedCell(faller.column, faller.middle_color);
-                        board[faller.row - 2][faller.column - 1] = faller.top_color;
-                        emptyMovedCell(faller.column, faller.top_color);
-                        faller.column--;
+                if (isValidCol(faller.col - 1)) {
+                    if (board[faller.row][faller.col - 1] == EMPTY) {
+                        board[faller.row][faller.col - 1] = faller.getBottomColor();
+                        emptyMovedCell(faller.col, faller.getBottomColor());
+                        board[faller.row - 1][faller.col - 1] = faller.getMiddleColor();
+                        emptyMovedCell(faller.col, faller.getMiddleColor());
+                        board[faller.row - 2][faller.col - 1] = faller.getTopColor();
+                        emptyMovedCell(faller.col, faller.getTopColor());
+                        faller.col--;
                         if (hasLanded()) {
                             changed = true;
                         }
@@ -173,15 +171,15 @@ public class Columns {
         {
             if (isValidRow(faller.row-2))
             {
-                if (isValidCol(faller.column + 1)) {
-                    if (board[faller.row][faller.column + 1] == EMPTY) {
-                        board[faller.row][faller.column + 1] = faller.bottom_color;
-                        emptyMovedCell(faller.column, faller.bottom_color);
-                        board[faller.row - 1][faller.column + 1] = faller.middle_color;
-                        emptyMovedCell(faller.column, faller.middle_color);
-                        board[faller.row - 2][faller.column + 1] = faller.top_color;
-                        emptyMovedCell(faller.column, faller.top_color);
-                        faller.column++;
+                if (isValidCol(faller.col + 1)) {
+                    if (board[faller.row][faller.col + 1] == EMPTY) {
+                        board[faller.row][faller.col + 1] = faller.getBottomColor();
+                        emptyMovedCell(faller.col, faller.getBottomColor());
+                        board[faller.row - 1][faller.col + 1] = faller.getMiddleColor();
+                        emptyMovedCell(faller.col, faller.getMiddleColor());
+                        board[faller.row - 2][faller.col + 1] = faller.getTopColor();
+                        emptyMovedCell(faller.col, faller.getTopColor());
+                        faller.col++;
                         if (hasLanded()) {
                             changed = true;
                         }
@@ -415,15 +413,15 @@ public class Columns {
     {
         if (isValidRow(faller.row))
         {
-            board[faller.row][faller.column] = faller.bottom_color;
+            board[faller.row][faller.col] = faller.getBottomColor();
         }
         if (isValidRow(faller.row-1))
         {
-            board[faller.row-1][faller.column] = faller.middle_color;
+            board[faller.row-1][faller.col] = faller.getMiddleColor();
         }
         if (isValidRow(faller.row-2))
         {
-            board[faller.row-2][faller.column] = faller.top_color;
+            board[faller.row-2][faller.col] = faller.getTopColor();
         }
     }
 
@@ -448,8 +446,8 @@ public class Columns {
         {
             if (isValidRow(faller.row+1))
             {
-                return (board[rows-1][faller.column] == EMPTY ||
-                        board[faller.row+1][faller.column] == EMPTY);
+                return (board[rows-1][faller.col] == EMPTY ||
+                        board[faller.row+1][faller.col] == EMPTY);
             }
         }
         return false;
@@ -480,7 +478,7 @@ public class Columns {
         {
             if (isValidRow(faller.row+1))
             {
-                return (board[faller.row+1][faller.column] != EMPTY
+                return (board[faller.row+1][faller.col] != EMPTY
                 && !isValidRow(faller.row-2));
             }
         }
@@ -535,7 +533,7 @@ public class Columns {
             int cell = board[row][col];
             if (fallerExists())
             {
-                if (col == faller.column && row <= faller.row)
+                if (col == faller.col && row <= faller.row)
                 {
                     if (isFalling())
                     {
