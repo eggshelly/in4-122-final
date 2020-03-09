@@ -12,6 +12,7 @@ public class Columns {
     private ArrayList<ArrayList<Integer>> matched;
     private int[][] board;
     private static final int EMPTY = 0;
+    private int score;
 
     public Columns()
     {
@@ -23,6 +24,7 @@ public class Columns {
         faller = null;
         matched = new ArrayList<ArrayList<Integer>>();
         board = new int[rows][cols];
+        score = 0;
         initializeBoard();
     }
 
@@ -114,6 +116,11 @@ public class Columns {
     public ArrayList<ArrayList<Integer>> getMatched()
     {
         return matched;
+    }
+
+    public int getScore()
+    {
+        return score;
     }
 
     public void initializeBoard()
@@ -368,6 +375,7 @@ public class Columns {
     {
         if (hasMatch())
         {
+            score += (100 * matched.size());
             for (ArrayList<Integer> match: matched)
             {
                 int mRow = match.get(0);
@@ -388,6 +396,7 @@ public class Columns {
             }
             matched.clear();
         }
+        matched.clear();
     }
 
     private void movePiecesDown()

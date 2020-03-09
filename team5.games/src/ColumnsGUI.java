@@ -8,9 +8,12 @@ public class ColumnsGUI {
     private static Timer timer;
     private static JFrame frame;
     private static JPanel gameScreen;
-    private static JPanel buttonPanel;
     private static JPanel boardPanel;
-    private static JButton startButton;
+    private static JPanel infoPanel;
+    private static JLabel scoreLabel;
+    private static JMenuBar menuBar;
+    private static JMenu menu;
+    private static JMenuItem start;
     private static Columns game = new Columns();
 
     public static void main(String[] args)
@@ -19,11 +22,76 @@ public class ColumnsGUI {
         gameScreen = new JPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(gameScreen);
+        setMenuBar();
         setGameScreen();
 
         frame.setSize(400, 700);
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
+    }
+
+    public static void setMenuBar()
+    {
+        menuBar = new JMenuBar();
+        menu = new JMenu("Game Options");
+        start = new JMenuItem("Start New Game");
+
+        start.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (timer != null)
+                {
+                    timer.stop();
+                }
+                frame.getContentPane().removeAll();
+                game = new Columns();
+                setGameScreen();
+                frame.setVisible(true);
+
+                Random rand = new Random();
+                int randCol = rand.nextInt(game.getCols()) + 1;
+                game.initializeFaller(randCol);
+                boardPanel.updateUI();
+                boardPanel.removeAll();
+                setBoardPanel();
+                timer = new Timer(500, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        if (game.isFrozen() && game.getNumMatched() == 0)
+                        {
+                            Random rand = new Random();
+                            int randCol = rand.nextInt(game.getCols()) + 1;
+                            game.initializeFaller(randCol);
+                        }
+                        else
+                        {
+                            if (game.getNumMatched() > 0)
+                            {
+                                timer.setDelay(20000);
+                                game.deleteMatched();
+                                timer.setDelay(500);
+                            }
+
+                            game.dropFaller();
+                            game.markMatched();
+                        }
+
+                        boardPanel.updateUI();
+                        boardPanel.removeAll();
+                        setBoardPanel();
+
+                        infoPanel.updateUI();
+                        infoPanel.removeAll();
+                        setScoreLabel();
+                    }
+                });
+                timer.start();
+            }
+        });
+
+        menu.add(start);
+        menuBar.add(menu);
+        frame.setJMenuBar(menuBar);
     }
 
     public static void setGameScreen()
@@ -92,68 +160,10 @@ public class ColumnsGUI {
         });
 
         frame.getContentPane().setLayout(new BorderLayout());
-        buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout());
-        startButton = new JButton("START");
-        buttonPanel.add(startButton);
 
-        startButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                {
-                    if (timer != null)
-                    {
-                        timer.stop();
-                    }
-                    boardPanel.removeAll();
-                    game = new Columns();
-                    setBoardPanel();
-
-                    Random rand = new Random();
-                    int randCol = rand.nextInt(game.getCols()) + 1;
-                    game.initializeFaller(randCol);
-                    boardPanel.updateUI();
-                    boardPanel.removeAll();
-                    setBoardPanel();
-                    timer = new Timer(500, new ActionListener() {
-                        @Override
-                        public void actionPerformed(ActionEvent e) {
-                            if (game.isFrozen())
-                            {
-                                Random rand = new Random();
-                                int randCol = rand.nextInt(game.getCols()) + 1;
-                                game.initializeFaller(randCol);
-                            }
-                            else
-                            {
-                                if (game.getNumMatched() > 0)
-                                {
-                                    timer.setDelay(20000);
-                                    game.deleteMatched();
-                                    timer.setDelay(500);
-                                }
-
-                                game.dropFaller();
-                                game.markMatched();
-                            }
-
-                            if (game.isGameOver())
-                            {
-                                game.handleGameOver();
-                                //ADD GAME OVER LABEL HERE
-                                timer.stop();
-                            }
-
-                            boardPanel.updateUI();
-                            boardPanel.removeAll();
-                            setBoardPanel();
-                        }
-                    });
-                    timer.start();
-                }
-            }
-        });
-        frame.getContentPane().add(buttonPanel, BorderLayout.NORTH);
+        infoPanel = new JPanel();
+        infoPanel.setLayout(new FlowLayout());
+        setScoreLabel();
 
         boardPanel = new JPanel();
         boardPanel.setLayout(new GridLayout(game.getRows(), game.getCols()));
@@ -191,7 +201,7 @@ public class ColumnsGUI {
                 }
                 else if (game.getCell(i, j) == 2)
                 {
-                    piecePanel.setBackground(Color.YELLOW);
+                    piecePanel.setBackground(Color.ORANGE);
                 }
                 else if (game.getCell(i, j) == 3)
                 {
@@ -208,5 +218,29 @@ public class ColumnsGUI {
                 boardPanel.add(piecePanel);
             }
         }
+    }
+
+    public static void setScoreLabel()
+    {
+        scoreLabel = new JLabel("", SwingConstants.CENTER);
+        if (game.isGameOver())
+        {
+            game.handleGameOver();
+            timer.stop();
+            scoreLabel.setText("GAME OVER");
+            scoreLabel.setForeground(Color.WHITE);
+            infoPanel.setBackground(Color.RED);
+            scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        }
+
+        else
+        {
+            scoreLabel.setText("SCORE: " + game.getScore());
+            scoreLabel.setForeground(Color.WHITE);
+            infoPanel.setBackground(Color.BLACK);
+            scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+        }
+        infoPanel.add(scoreLabel);
+        frame.getContentPane().add(infoPanel, BorderLayout.NORTH);
     }
 }
