@@ -260,8 +260,14 @@ public class Columns {
                     }
                 }
             }
-            matched.clear();
         }
+        System.out.print("MATCHED: ");
+        for (int i = 0; i < matched.size(); i++)
+        {
+            System.out.print(matched.get(i).get(0) + "," + matched.get(i).get(1) + " | ");
+        }
+        System.out.println();
+
         matched.clear();
     }
 
@@ -335,6 +341,7 @@ public class Columns {
                     tempRow = i;
                     tempCol = j;
                     isMatched = true;
+                    return;
                 }
             }
         }
@@ -362,6 +369,7 @@ public class Columns {
                     tempRow = i;
                     tempCol = j;
                     isMatched = true;
+                    return;
                 }
             }
         }
@@ -388,6 +396,7 @@ public class Columns {
                     tempRow = i;
                     tempCol = j;
                     isMatched = true;
+                    return;
                 }
             }
         }
@@ -415,6 +424,7 @@ public class Columns {
                     tempRow = i;
                     tempCol = j;
                     isMatched = true;
+                    return;
                 }
             }
         }
