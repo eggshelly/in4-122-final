@@ -229,6 +229,63 @@ public class Columns {
         }
     }
 
+    public void markMatched()
+    {
+        handleHorizontalMatch();
+        handleRightDiagonalMatch();
+        handleVerticalMatch();
+        handleLeftDiagonalMatch();
+    }
+
+    public void deleteMatched()
+    {
+        if (hasMatch())
+        {
+            score += (10 * matched.size());
+            for (ArrayList<Integer> match: matched)
+            {
+                int mRow = match.get(0);
+                int mCol = match.get(1);
+                for (int i = 0; i < rows; i++)
+                {
+                    for (int j = 0; j < cols; j++)
+                    {
+                        if (i == mRow && j == mCol)
+                        {
+                            board[i][j] = EMPTY;
+                        }
+                        movePiecesDown();
+                        freezeFaller();
+                        isMatched = false;
+                    }
+                }
+            }
+            matched.clear();
+        }
+        matched.clear();
+    }
+
+    public boolean isGameOver()
+    {
+        if (fallerExists() && hasLanded())
+        {
+            if (isValidRow(faller.row+1))
+            {
+                return (board[faller.row+1][faller.col] != EMPTY
+                        && !isValidRow(faller.row-2));
+            }
+        }
+        return false;
+    }
+
+    public void handleGameOver()
+    {
+        if (isGameOver())
+        {
+            freezeFaller();
+        }
+    }
+
     private int matchFound(int row, int col, int rowdelta, int coldelta)
     {
         int start_cell = board[row][col];
@@ -363,42 +420,6 @@ public class Columns {
         }
     }
 
-    public void markMatched()
-    {
-        handleHorizontalMatch();
-        handleRightDiagonalMatch();
-        handleVerticalMatch();
-        handleLeftDiagonalMatch();
-    }
-
-    public void deleteMatched()
-    {
-        if (hasMatch())
-        {
-            score += (100 * matched.size());
-            for (ArrayList<Integer> match: matched)
-            {
-                int mRow = match.get(0);
-                int mCol = match.get(1);
-                for (int i = 0; i < rows; i++)
-                {
-                    for (int j = 0; j < cols; j++)
-                    {
-                        if (i == mRow && j == mCol)
-                        {
-                            board[i][j] = EMPTY;
-                        }
-                        movePiecesDown();
-                        freezeFaller();
-                        isMatched = false;
-                    }
-                }
-            }
-            matched.clear();
-        }
-        matched.clear();
-    }
-
     private void movePiecesDown()
     {
         for (int i = 0; i < rows; i++)
@@ -445,13 +466,6 @@ public class Columns {
         }
     }
 
-    public void handleGameOver()
-    {
-        if (isGameOver())
-        {
-            freezeFaller();
-        }
-    }
 
     private void addFallerToBoard()
     {
@@ -512,19 +526,6 @@ public class Columns {
         if (!hasMatch())
         {
             return (!isFalling());
-        }
-        return false;
-    }
-
-    public boolean isGameOver()
-    {
-        if (fallerExists() && hasLanded())
-        {
-            if (isValidRow(faller.row+1))
-            {
-                return (board[faller.row+1][faller.col] != EMPTY
-                && !isValidRow(faller.row-2));
-            }
         }
         return false;
     }

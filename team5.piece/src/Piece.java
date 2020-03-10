@@ -21,13 +21,9 @@ public class Piece {
     }
 
     //makes the piece fall down one
+    //does NOT check if the piece has landed
     public void fall(){
         row++;
-    }
-
-    //?? TODO
-    public void update(){
-        fall();
     }
 
     //updates the piece when landed, changes settled

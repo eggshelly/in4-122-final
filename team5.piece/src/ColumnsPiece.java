@@ -6,6 +6,13 @@ public class ColumnsPiece extends Piece{
         pieceArr = new Piece[]{new Piece(col), new Piece(col), new Piece(col)};
     }
 
+    public void fall(){
+        super.fall();
+        for(Piece p : pieceArr){
+            p.fall();
+        }
+    }
+
     public int getBottomColor()
     {
         return pieceArr[2].color;
