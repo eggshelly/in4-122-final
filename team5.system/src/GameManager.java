@@ -10,6 +10,8 @@ public class GameManager {
     private ArrayList<Player> Players;
 
     public GameManager() {
+        String os = System.getProperty("os.name");
+        System.out.println(os);
         this.Players = new ArrayList<Player>();
 
     }
@@ -34,7 +36,7 @@ public class GameManager {
             PrintWriter out;
             try {
                 out = new PrintWriter(PlayerFile);
-                out.print(toString().trim());
+                out.print("");
                 out.close();
             } catch (FileNotFoundException e) { e.printStackTrace(); }
         }
