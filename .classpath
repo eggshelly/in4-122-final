@@ -3,8 +3,6 @@
 	<classpathentry kind="src" path="team5.games/src"/>
 	<classpathentry kind="src" path="team5.piece/src"/>
 	<classpathentry kind="src" path="team5.system/src"/>
-	<classpathentry kind="src" path="team5.games/src"/>
-	<classpathentry kind="src" path="team5.games/src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="output" path="out/production/team5.games"/>
 </classpath>
