@@ -14,6 +14,6 @@ public class Player {
 	
 	public String getUserName() { return this.UserName; }
 	public int getNumGames() { return this.NumGames; }
-	public String toString() { return String.format("%1$, %2$s\n", getUserName(), getNumGames()); }
+	public String toString() { return getUserName() + "," + getNumGames() + "\n"; }
 	public void increment() { ++this.NumGames; }
 }

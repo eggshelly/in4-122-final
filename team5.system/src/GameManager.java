@@ -6,8 +6,13 @@ import java.util.Scanner;
 
 
 public class GameManager {
-    private final static String PlayerFile = "UserNames.txt";
+    private final static String PlayerFile = "team5.system\\src\\UserNames.txt";
     private ArrayList<Player> Players;
+
+    public GameManager() {
+        this.Players = new ArrayList<Player>();
+
+    }
 
 
     private void loadPlayers() {
@@ -25,8 +30,18 @@ public class GameManager {
                 Players.add(new Player(userName, numGames));
             }
             in.close();
-        } catch (Exception e) {
-
+        } catch (FileNotFoundException f) {
+            PrintWriter out;
+            try {
+                out = new PrintWriter(PlayerFile);
+                out.print(toString().trim());
+                out.close();
+            } catch (FileNotFoundException e) { e.printStackTrace(); }
         }
+    }
+
+    public static void main(String[] args) {
+        GameManager a = new GameManager();
+        a.loadPlayers();
     }
 }
