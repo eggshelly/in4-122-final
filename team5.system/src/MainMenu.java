@@ -13,6 +13,5 @@ public class MainMenu {
     public void printMenu() {
         // Print out Menu Text
     }
-
     
 }
