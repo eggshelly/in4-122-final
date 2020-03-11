@@ -55,18 +55,18 @@ public class Bejeweled {
                 {
                     isMatched = true;
                     ArrayList<Integer> matchPair1 = new ArrayList<Integer>();
-                    matchPair.add(x);
-                    matchPair.add(y);
+                    matchPair1.add(x);
+                    matchPair1.add(y);
                     matched.add(matchPair1);
 
                     ArrayList<Integer> matchPair2 = new ArrayList<Integer>();
-                    matchPair.add(x+1);
-                    matchPair.add(y);
+                    matchPair2.add(x+1);
+                    matchPair2.add(y);
                     matched.add(matchPair2);
 
                     ArrayList<Integer> matchPair3 = new ArrayList<Integer>();
-                    matchPair.add(x+2);
-                    matchPair.add(y);
+                    matchPair3.add(x+2);
+                    matchPair3.add(y);
                     matched.add(matchPair3);
                 }
 
@@ -75,18 +75,18 @@ public class Bejeweled {
                 {
                     isMatched = true;
                     ArrayList<Integer> matchPair4 = new ArrayList<Integer>();
-                    matchPair.add(x);
-                    matchPair.add(y);
+                    matchPair4.add(x);
+                    matchPair4.add(y);
                     matched.add(matchPair4);
 
                     ArrayList<Integer> matchPair5 = new ArrayList<Integer>();
-                    matchPair.add(x);
-                    matchPair.add(y + 1);
+                    matchPair5.add(x);
+                    matchPair5.add(y + 1);
                     matched.add(matchPair5);
 
                     ArrayList<Integer> matchPair6 = new ArrayList<Integer>();
-                    matchPair.add(x);
-                    matchPair.add(y + 2);
+                    matchPair6.add(x);
+                    matchPair6.add(y + 2);
                     matched.add(matchPair6);
                 }
             }
@@ -99,7 +99,7 @@ public class Bejeweled {
 
     public void deleteMatched()
     {
-        for (ArrayList<Integer> match: matched)
+        for (ArrayList<Arra<Integer> match: matched)
         {
             int mRow = match.get(0);
             int mCol = match.get(1);
@@ -111,13 +111,13 @@ public class Bejeweled {
                     {
                         board[i][j] = EMPTY;
                     }
-                    movePiecesDown();
-                    freezeFaller();
+                    //movePiecesDown();
+                    //freezeFaller();
                     isMatched = false;
                 }
 
             }
-            matched.clear();
+            //matched.clear();
         }
     }
 
