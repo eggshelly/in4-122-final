@@ -7,6 +7,7 @@ public class Bejeweled {
     private boolean isMatched;
     private ArrayList<ArrayList<Integer>> matched;
     private int[][] board;
+    private static final int EMPTY = 0;
     private int score;
 
     // makeBoard(Board)
@@ -18,8 +19,8 @@ public class Bejeweled {
 
     public Bejeweled()
     {
-        rows = 13;
-        cols = 6;
+        rows = 8;
+        cols = 8;
         isMatched = false;
         matched = new ArrayList<ArrayList<Integer>>();
         board = new int[rows][cols];
@@ -45,45 +46,79 @@ public class Bejeweled {
     public void checkBoard()
     {
         isMatched = false;
-        for (int x = 0; x < boardWidth - 2; x++)
+        for (int x = 0; x < rows - 2; x++)
         {
-            for (int y = 0; y < boardHeight - 2; y++)
+            for (int y = 0; y < cols - 2; y++)
             {
                 // row match
                 if (board[x][y] == board[x+1][y] && board[x+1][y] == board[x+2][y]) // 3 matched pieces
                 {
                     isMatched = true;
                     ArrayList<Integer> matchPair1 = new ArrayList<Integer>();
-                    matchPair.add(x);
-                    matchPair.add(y);
+                    matchPair1.add(x);
+                    matchPair1.add(y);
                     matched.add(matchPair1);
 
                     ArrayList<Integer> matchPair2 = new ArrayList<Integer>();
-                    matchPair.add(x+1);
-                    matchPair.add(y);
+                    matchPair2.add(x+1);
+                    matchPair2.add(y);
                     matched.add(matchPair2);
 
                     ArrayList<Integer> matchPair3 = new ArrayList<Integer>();
-                    matchPair.add(x+2);
-                    matchPair.add(y);
+                    matchPair3.add(x+2);
+                    matchPair3.add(y);
                     matched.add(matchPair3);
-
-                    removeMatch(board[x][y], board[x+1][y], board[x+2][y]);
                 }
 
                 // column match
                 if (board[x][y] == board[x][y+1] && board[x][y+1] == board[x][y+2]) // 3 matched pieces
                 {
                     isMatched = true;
-                    removeMatch(board[x][y], board[x][y+1], board[x][y+2]);
+                    ArrayList<Integer> matchPair4 = new ArrayList<Integer>();
+                    matchPair4.add(x);
+                    matchPair4.add(y);
+                    matched.add(matchPair4);
+
+                    ArrayList<Integer> matchPair5 = new ArrayList<Integer>();
+                    matchPair5.add(x);
+                    matchPair5.add(y + 1);
+                    matched.add(matchPair5);
+
+                    ArrayList<Integer> matchPair6 = new ArrayList<Integer>();
+                    matchPair6.add(x);
+                    matchPair6.add(y + 2);
+                    matched.add(matchPair6);
                 }
             }
         }
+        if (matched.size != 0)
+        {
+            deleteMatched();
+        }
     }
 
-    public void checkMove()
+    public void deleteMatched()
     {
+        for (ArrayList<Arra<Integer> match: matched)
+        {
+            int mRow = match.get(0);
+            int mCol = match.get(1);
+            for (int i = 0; i < rows; i++)
+            {
+                for (int j = 0; j < cols; j++)
+                {
+                    if (i == mRow && j == mCol)
+                    {
+                        board[i][j] = EMPTY;
+                    }
+                    //movePiecesDown();
+                    //freezeFaller();
+                    isMatched = false;
+                }
 
+            }
+            //matched.clear();
+        }
     }
 
 }
