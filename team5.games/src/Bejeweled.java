@@ -117,8 +117,9 @@ public class Bejeweled {
                 }
 
             }
-            //matched.clear();
         }
+        matched.clear();
+        checkBoard();
     }
 
 }
