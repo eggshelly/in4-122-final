@@ -1,12 +1,10 @@
 import java.util.Scanner;
 
 public class MainMenu {
-
     public static String[] games = {"Columns", "Bejeweled"};
     private static String[] players = new String[2];
     private static int numPlayers = 0;
-    // private static Game game; <- CHANGE TO THIS AFTER IMPLEMENTING AS GAME
-    private static ColumnsGUI game; //TEMP
+    private static Game game;
 
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
@@ -41,7 +39,7 @@ public class MainMenu {
         if(secondPlayer.equals("")){
             System.out.println("Starting a single player game.");
             numPlayers = 1;
-            game = new ColumnsGUI();
+            game = new Columns();
             game.run();
         }
         else{

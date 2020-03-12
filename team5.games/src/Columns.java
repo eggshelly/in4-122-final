@@ -7,18 +7,16 @@ public class Columns extends Game {
     private boolean isMatched;
     private boolean frozen;
     private ColumnsPiece faller;
+    private ColumnsGUI GUI;
 
     public Columns()
     {
-        rows = 13;
-        cols = 6;
+        super();
         changed = false;
         isMatched = false;
         frozen = false;
         faller = null;
-        matched = new ArrayList<ArrayList<Integer>>();
-        board = new int[rows][cols];
-        score = 0;
+        GUI = new ColumnsGUI();
         initializeBoard();
     }
 
@@ -32,7 +30,7 @@ public class Columns extends Game {
 
     public void run()
     {
-        playConsoleGame();
+        GUI.runGUI();
     }
 
     public void printBoard()

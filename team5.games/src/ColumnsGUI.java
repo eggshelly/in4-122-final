@@ -16,7 +16,7 @@ public class ColumnsGUI {
     private static JMenuItem start;
     private static Columns game = new Columns();
 
-    public void run()
+    public void runGUI()
     {
         frame = new JFrame("Team 5 - Columns");
         gameScreen = new JPanel();
