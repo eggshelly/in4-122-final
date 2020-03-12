@@ -5,8 +5,10 @@ public class TestObj2 {
 
     public static void columnsTest()
     {
-        Columns c = new Columns();
-        c.playGame();
+//        Columns c = new Columns();
+//        c.run();
+        Columns g = new ColumnsGUI();
+        g.run();
     }
 
     public static void main(String[] args){

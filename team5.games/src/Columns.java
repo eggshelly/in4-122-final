@@ -2,17 +2,11 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Columns {
-    private int rows;
-    private int cols;
+public class Columns extends Game {
     private boolean changed;
     private boolean isMatched;
     private boolean frozen;
     private ColumnsPiece faller;
-    private ArrayList<ArrayList<Integer>> matched;
-    private int[][] board;
-    private static final int EMPTY = 0;
-    private int score;
 
     public Columns()
     {
@@ -28,110 +22,47 @@ public class Columns {
         initializeBoard();
     }
 
-    public void playGame()
+    public void checkMatch()
     {
-        Scanner input = new Scanner(System.in);
-        System.out.println("WELCOME TO COLUMNS");
-        printBoard();
-        System.out.println("Press 'F' to create faller,\n'R' to rotate,\n'<' to move left," +
-                "\n'>' to move right,\n'ENTER' to drop:");
-        while (true)
+        handleHorizontalMatch();
+        handleRightDiagonalMatch();
+        handleVerticalMatch();
+        handleLeftDiagonalMatch();
+    }
+
+    public void run()
+    {
+        playConsoleGame();
+    }
+
+    public void printBoard()
+    {
+        int num_spaces = 0;
+        String dash = "-";
+        for (int i = 0; i < rows; i++)
         {
-            String command = input.nextLine();
-
-            if (command.isEmpty())
+            System.out.print("|");
+            for (int j = 0; j < cols; j++)
             {
-                if (matched.size() > 0)
+                num_spaces = 3 * cols;
+                if (!hasMatch())
                 {
-                    deleteMatched();
-                    printBoard();
+                    printUnmatchedCells(i, j);
                 }
-                else
+                else if (hasMatch())
                 {
-                    dropFaller();
-                    markMatched();
-                    printBoard();
+                    printMatchedCells(i, j);
                 }
             }
-            else if (!command.isEmpty())
-            {
-                if (command.equalsIgnoreCase("F")) {
-                    Random rand = new Random();
-                    int randCol = rand.nextInt(cols) + 1;
-                    initializeFaller(randCol);
-                    printBoard();
-                }
-                if (command.equalsIgnoreCase("R"))
-                {
-                    rotateFaller();
-                    printBoard();
-                }
-                if (command.equalsIgnoreCase("<"))
-                {
-                    moveFallerLeft();
-                    printBoard();
-                }
-                if (command.equalsIgnoreCase(">"))
-                {
-                    moveFallerRight();
-                    printBoard();
-                }
-            }
-
-            if (isGameOver())
-            {
-                handleGameOver();
-                printBoard();
-                System.out.println("GAME OVER");
-                break;
-            }
+            System.out.println("|");
         }
-    }
-
-    public int getCell(int row, int col)
-    {
-        return board[row][col];
-    }
-
-    public int getRows()
-    {
-        return rows;
-    }
-
-    public int getCols()
-    {
-        return cols;
+        dash = dash.repeat(num_spaces);
+        System.out.println(" " + dash + " ");
     }
 
     public boolean isFrozen()
     {
         return frozen;
-    }
-
-    public int getNumMatched()
-    {
-        return matched.size();
-    }
-
-    public ArrayList<ArrayList<Integer>> getMatched()
-    {
-        return matched;
-    }
-
-    public int getScore()
-    {
-        return score;
-    }
-
-    public void initializeBoard()
-    {
-        for (int i = 0; i < rows; i++)
-        {
-            for (int j = 0; j < cols; j++)
-            {
-                board[i][j] = EMPTY;
-            }
-        }
     }
 
     public void initializeFaller(int col)
@@ -227,14 +158,6 @@ public class Columns {
                 }
             }
         }
-    }
-
-    public void markMatched()
-    {
-        handleHorizontalMatch();
-        handleRightDiagonalMatch();
-        handleVerticalMatch();
-        handleLeftDiagonalMatch();
     }
 
     public void deleteMatched()
@@ -551,30 +474,6 @@ public class Columns {
     }
 
     //UI METHODS:
-    private void printBoard()
-    {
-        int num_spaces = 0;
-        String dash = "-";
-        for (int i = 0; i < rows; i++)
-        {
-            System.out.print("|");
-            for (int j = 0; j < cols; j++)
-            {
-                num_spaces = 3 * cols;
-                if (!hasMatch())
-                {
-                    printUnmatchedCells(i, j);
-                }
-                else if (hasMatch())
-                {
-                    printMatchedCells(i, j);
-                }
-            }
-            System.out.println("|");
-        }
-        dash = dash.repeat(num_spaces);
-        System.out.println(" " + dash + " ");
-    }
 
     private void printUnmatchedCells(int row, int col)
     {
@@ -628,5 +527,65 @@ public class Columns {
             }
         }
         return cell;
+    }
+
+    private void playConsoleGame()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("WELCOME TO COLUMNS");
+        printBoard();
+        System.out.println("Press 'F' to create faller,\n'R' to rotate,\n'<' to move left," +
+                "\n'>' to move right,\n'ENTER' to drop:");
+        while (true)
+        {
+            String command = input.nextLine();
+
+            if (command.isEmpty())
+            {
+                if (matched.size() > 0)
+                {
+                    deleteMatched();
+                    printBoard();
+                }
+                else
+                {
+                    dropFaller();
+                    checkMatch();
+                    printBoard();
+                }
+            }
+            else if (!command.isEmpty())
+            {
+                if (command.equalsIgnoreCase("F")) {
+                    Random rand = new Random();
+                    int randCol = rand.nextInt(cols) + 1;
+                    initializeFaller(randCol);
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase("R"))
+                {
+                    rotateFaller();
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase("<"))
+                {
+                    moveFallerLeft();
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase(">"))
+                {
+                    moveFallerRight();
+                    printBoard();
+                }
+            }
+
+            if (isGameOver())
+            {
+                handleGameOver();
+                printBoard();
+                System.out.println("GAME OVER");
+                break;
+            }
+        }
     }
 }

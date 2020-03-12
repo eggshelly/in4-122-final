@@ -16,21 +16,7 @@ public class ColumnsGUI {
     private static JMenuItem start;
     private static Columns game = new Columns();
 
-//    public static void main(String[] args)
-//    {
-//        frame = new JFrame("Team 5 - Columns");
-//        gameScreen = new JPanel();
-//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-//        frame.setContentPane(gameScreen);
-//        setMenuBar();
-//        setGameScreen();
-//
-//        frame.setSize(400, 700);
-//        frame.setLocationRelativeTo(null);
-//        frame.setVisible(true);
-//    }
-
-    public static void run()
+    public void run()
     {
         frame = new JFrame("Team 5 - Columns");
         gameScreen = new JPanel();
@@ -44,7 +30,7 @@ public class ColumnsGUI {
         frame.setVisible(true);
     }
 
-    public static void setMenuBar()
+    public void setMenuBar()
     {
         menuBar = new JMenuBar();
         menu = new JMenu("Game Options");
@@ -87,7 +73,7 @@ public class ColumnsGUI {
                             }
 
                             game.dropFaller();
-                            game.markMatched();
+                            game.checkMatch();
                         }
 
                         boardPanel.updateUI();
@@ -108,7 +94,7 @@ public class ColumnsGUI {
         frame.setJMenuBar(menuBar);
     }
 
-    public static void setGameScreen()
+    public void setGameScreen()
     {
         JPanel contentPane = (JPanel) frame.getContentPane();
         int condition = JComponent.WHEN_IN_FOCUSED_WINDOW;
@@ -143,7 +129,7 @@ public class ColumnsGUI {
                 }
 
                 game.dropFaller();
-                game.markMatched();
+                game.checkMatch();
 
                 boardPanel.updateUI();
                 boardPanel.removeAll();
@@ -185,7 +171,7 @@ public class ColumnsGUI {
         frame.getContentPane().add(boardPanel, BorderLayout.CENTER);
     }
 
-    public static void setBoardPanel()
+    public void setBoardPanel()
     {
         for (int i = 0 ; i < game.getRows(); i++)
         {
@@ -234,7 +220,7 @@ public class ColumnsGUI {
         }
     }
 
-    public static void setScoreLabel()
+    public void setScoreLabel()
     {
         scoreLabel = new JLabel("", SwingConstants.CENTER);
         if (game.isGameOver())
