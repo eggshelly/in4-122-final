@@ -40,10 +40,23 @@ public class Bejeweled {
             }
         }
 
-        checkBoard();
+        if(checkBoard())
+            deleteMatched();
     }
 
-    public void checkBoard()
+    public void makeMove(int row1, int col1, int row2, int col2){
+        if(isValidRow(row1) && isValidCol(col1) && isValidRow(row2) && isValidCol(col2)){
+            //check if row 1 & col1 is next to row2 & col2
+            int temp = board[row1][col1];
+            board[row1][col1] = board[row2][col2];
+            board[row2][col2] = temp;
+        }
+        if(checkBoard())
+            deleteMatched();
+
+    }
+
+    public boolean checkBoard()
     {
         isMatched = false;
         for (int x = 0; x < rows - 2; x++)
@@ -91,10 +104,11 @@ public class Bejeweled {
                 }
             }
         }
-        if (matched.size() != 0)
-        {
-            deleteMatched();
-        }
+        return isMatched;
+//        if (matched.size() != 0)
+//        {
+//            deleteMatched();
+//        }
     }
 
     public void deleteMatched()
@@ -163,7 +177,10 @@ public class Bejeweled {
 
     private void printBoard()
     {
+        for (int i = 0; i < rows; i++)
+        {
 
+        }
     }
 
 
