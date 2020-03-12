@@ -121,14 +121,40 @@ public class Bejeweled {
         }
     }
 
+    private boolean isValidRow(int row)
+    {
+        return (row >= 0 && row < rows);
+    }
+
+    private boolean isValidCol(int col)
+    {
+        return (col >= 0 && col < cols);
+    }
+
     //generates new pieces to fill the board
-    public void generatePiece(){
-        for (int i = 0; i < rows; i++)
+    public void generatePiece()
+    {
+
+        for (int i = rows-1; i > -1; i++)
         {
-            for (int j = 0; j < cols; j++)
+            for (int j = cols-1; j > -1; j++)
             {
-                if(board[i[j]])
-                board[i][j] = r.nextInt(4) + 1;
+                if(board[i][j] == EMPTY)
+                {
+                    if (isValidRow(i-1)){
+                        if (board[i-1][j] != EMPTY)
+                        {
+                            board[i][j] = board[i-1][j];
+                            board[i-1][j] = EMPTY;
+                        }
+                        else{
+                            board[i][j] = r.nextInt(4) + 1;
+                        }
+                    }
+                    else{
+                        board[i][j] = r.nextInt(4) + 1;
+                    }
+                }
             }
         }
     }
