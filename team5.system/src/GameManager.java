@@ -76,8 +76,12 @@ public class GameManager {
         savePlayers();
     }
 
+    public boolean contains (String player) {
+        for(Player p : Players ) { if( p.getUserName().equals(player)) { return true; } }
+        return false;
+    }
+
     public static void main(String[] args) {
         GameManager a = new GameManager();
-        a.increment("ErickB");
     }
 }
