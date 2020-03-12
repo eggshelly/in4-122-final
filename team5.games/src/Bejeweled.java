@@ -18,8 +18,8 @@ public class Bejeweled {
 
     public Bejeweled()
     {
-        rows = 13;
-        cols = 6;
+        rows = 8;
+        cols = 8;
         isMatched = false;
         matched = new ArrayList<ArrayList<Integer>>();
         board = new int[rows][cols];
@@ -84,6 +84,18 @@ public class Bejeweled {
     public void checkMove()
     {
 
+    }
+
+    //generates new pieces to fill the board
+    public void generatePiece(){
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                if(board[i[j]])
+                board[i][j] = r.nextInt(4) + 1;
+            }
+        }
     }
 
 }
