@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="2ffb7004-d5bb-4df4-883f-40779b18bd55" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/in4 122 final.iml" beforeDir="false" afterPath="$PROJECT_DIR$/in4 122 final.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/team5.system/UserNames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/team5.system/UserNames.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/columns_logic.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/columns_logic.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/columns_ui.py" beforeDir="false" afterPath="$PROJECT_DIR$/resources/columns_ui.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.games/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.games/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.games/src/TestObj2.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.games/src/TestObj2.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.games/team5.games.iml" beforeDir="false" afterPath="$PROJECT_DIR$/team5.games/team5.games.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.piece/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.piece/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.piece/src/TestObj.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.piece/src/TestObj.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.piece/team5.piece.iml" beforeDir="false" afterPath="$PROJECT_DIR$/team5.piece/team5.piece.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/src/GameManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/src/GameManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/src/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/src/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/src/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/src/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/src/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/src/Test3.java" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/src/Test3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/src/UserNames.txt" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/src/UserNames.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/team5.system/team5.system.iml" beforeDir="false" afterPath="$PROJECT_DIR$/team5.system/team5.system.iml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ExternalProjectsManager">
+    <system id="GRADLE">
+      <state>
+        <projects_view />
+      </state>
+    </system>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="project.structure.last.edited" value="SDKs" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\erick\Documents\ICS\IN4MTX122\in4-122-final\team5.system" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="GameManager" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="GameManager" />
+      <module name="team5.system" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.GameManager" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="618" y="301" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog" timestamp="1583806697946">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="618" y="301" key="#com.intellij.ide.util.projectWizard.JdkChooserPanel.MyDialog/0.0.1536.824@0.0.1536.824" timestamp="1583806697946" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1583806940306">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1583806940306" />
+    <state width="746" height="210" key="GridCell.Tab.0.bottom" timestamp="1583813152335">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.bottom/0.0.1536.824@0.0.1536.824" timestamp="1583813152335" />
+    <state width="746" height="210" key="GridCell.Tab.0.center" timestamp="1583813152334">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.center/0.0.1536.824@0.0.1536.824" timestamp="1583813152334" />
+    <state width="746" height="210" key="GridCell.Tab.0.left" timestamp="1583813152334">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.left/0.0.1536.824@0.0.1536.824" timestamp="1583813152334" />
+    <state width="746" height="210" key="GridCell.Tab.0.right" timestamp="1583813152334">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state width="746" height="210" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1583813152334" />
+    <state x="249" y="0" key="SettingsEditor" timestamp="1583807136432">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="249" y="0" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1583807136432" />
+  </component>
+</project>
