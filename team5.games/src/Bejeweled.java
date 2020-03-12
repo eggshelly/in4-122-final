@@ -135,6 +135,7 @@ public class Bejeweled {
     //generates new pieces to fill the board
     public void generatePiece()
     {
+        Random r = new Random();
 
         for (int i = rows-1; i > -1; i++)
         {
