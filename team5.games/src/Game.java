@@ -7,4 +7,5 @@ public interface Game {
 	public void checkMove();
 	public void printBoard();
 	public void generatePiece();
+	public boolean gameOver();
 }
