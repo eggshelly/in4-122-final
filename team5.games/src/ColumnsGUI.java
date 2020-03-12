@@ -16,7 +16,21 @@ public class ColumnsGUI {
     private static JMenuItem start;
     private static Columns game = new Columns();
 
-    public static void main(String[] args)
+//    public static void main(String[] args)
+//    {
+//        frame = new JFrame("Team 5 - Columns");
+//        gameScreen = new JPanel();
+//        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//        frame.setContentPane(gameScreen);
+//        setMenuBar();
+//        setGameScreen();
+//
+//        frame.setSize(400, 700);
+//        frame.setLocationRelativeTo(null);
+//        frame.setVisible(true);
+//    }
+
+    public static void run()
     {
         frame = new JFrame("Team 5 - Columns");
         gameScreen = new JPanel();
