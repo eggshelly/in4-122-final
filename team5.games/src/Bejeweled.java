@@ -91,7 +91,7 @@ public class Bejeweled {
                 }
             }
         }
-        if (matched.size != 0)
+        if (matched.size() != 0)
         {
             deleteMatched();
         }
@@ -99,7 +99,7 @@ public class Bejeweled {
 
     public void deleteMatched()
     {
-        for (ArrayList<Arra<Integer> match: matched)
+        for (ArrayList<Integer> match: matched)
         {
             int mRow = match.get(0);
             int mCol = match.get(1);
