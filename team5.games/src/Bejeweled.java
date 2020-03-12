@@ -137,9 +137,9 @@ public class Bejeweled {
     {
         Random r = new Random();
 
-        for (int i = rows-1; i > -1; i++)
+        for (int i = rows-1; i > -1; i--)
         {
-            for (int j = cols-1; j > -1; j++)
+            for (int j = cols-1; j > -1; j--)
             {
                 if(board[i][j] == EMPTY)
                 {
@@ -160,5 +160,11 @@ public class Bejeweled {
             }
         }
     }
+
+    private void printBoard()
+    {
+
+    }
+
 
 }
