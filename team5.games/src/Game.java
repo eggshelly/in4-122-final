@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 
+<<<<<<< HEAD
 public abstract class Game {
 	public int rows;
 	public int cols;
@@ -56,4 +57,15 @@ public abstract class Game {
 //	public abstract void makeMove();
 //	public abstract void checkMove();
 //	public abstract void generatePiece();
+=======
+public interface Game {
+	public void checkMatch();
+	public void run();
+	public void makeBoard();
+	public void makeMove();
+	public void checkMove();
+	public void printBoard();
+	public void generatePiece();
+	public boolean gameOver();
+>>>>>>> 6a5bb75d52a2a8de777a801e8e2420376a07076b
 }

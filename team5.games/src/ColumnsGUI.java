@@ -4,7 +4,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class ColumnsGUI extends Columns {
+public class ColumnsGUI {
     private static Timer timer;
     private static JFrame frame;
     private static JPanel gameScreen;

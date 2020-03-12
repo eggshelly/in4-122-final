@@ -16,4 +16,6 @@ public class Player {
 	public int getNumGames() { return this.NumGames; }
 	public String toString() { return getUserName() + "," + getNumGames() + "\n"; }
 	public void increment() { ++this.NumGames; }
+	public boolean equals(String other) { return this.getUserName().equals(other); }
+	public boolean equals(Player other) { return this.getUserName().equals(other.getUserName()); }
 }

@@ -6,14 +6,15 @@ import java.util.Scanner;
 
 
 public class GameManager {
-    private final static String PlayerFile = "team5.system\\src\\UserNames.txt";
-    private ArrayList<Player> Players;
+    private final String PlayerFile;  // = "team5.system\\src\\UserNames.txt";
+    private ArrayList<Player> Players = new ArrayList<Player>();
 
     public GameManager() {
         String os = System.getProperty("os.name");
-        System.out.println(os);
-        this.Players = new ArrayList<Player>();
-
+        if( os.contains("Mac") ) { this.PlayerFile = "team5.system/src/UserNames.txt"; }
+        else if (os.contains("Windows") ) { this.PlayerFile = "team5.system\\src\\UserNames.txt"; }
+        else { this.PlayerFile = "UserNames.txt"; }
+        loadPlayers();
     }
 
 
@@ -23,15 +24,17 @@ public class GameManager {
             String line = "";
             FileReader reader = new FileReader(PlayerFile);
             Scanner in = new Scanner(reader);
-            Players.clear();
+            ArrayList<Player> players = new ArrayList<Player>();
             while (in.hasNextLine()) {
                 line = in.nextLine();
                 info = line.split(",", 2);
                 String userName = info[0];
                 int numGames = Integer.parseInt(info[1]);
-                Players.add(new Player(userName, numGames));
+                players.add(new Player(userName, numGames));
             }
             in.close();
+            Players.clear();
+            Players.addAll(players);
         } catch (FileNotFoundException f) {
             PrintWriter out;
             try {
@@ -42,8 +45,43 @@ public class GameManager {
         }
     }
 
+    public void savePlayers() {
+        PrintWriter out;
+        try {
+            out = new PrintWriter(PlayerFile);
+            String output = "";
+            for(Player p: Players){ output += p.toString(); }
+            out.print(output.trim());
+            out.close();
+        } catch (FileNotFoundException e) { e.printStackTrace(); }
+    }
+
+    public void increment(String other) {
+        for(Player a: Players) {
+            if(a.equals(other)) {
+                a.increment();
+                break;
+            }
+        }
+        savePlayers();
+    }
+    
+    public void increment(Player other) {
+        for(Player a: Players) {
+            if(a.equals(other)) {
+                a.increment();
+                break;
+            }
+        }
+        savePlayers();
+    }
+
+    public boolean contains (String player) {
+        for(Player p : Players ) { if( p.getUserName().equals(player)) { return true; } }
+        return false;
+    }
+
     public static void main(String[] args) {
         GameManager a = new GameManager();
-        a.loadPlayers();
     }
 }
