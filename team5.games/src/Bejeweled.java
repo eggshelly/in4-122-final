@@ -133,7 +133,7 @@ public class Bejeweled {
     }
 
     //generates new pieces to fill the board
-    public void generatePiece()
+    public void movePiecesDown()
     {
         Random r = new Random();
 
