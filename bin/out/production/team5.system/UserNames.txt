@@ -1,2 +1,2 @@
 Jeimeil,1
-ErickB,1
+ErickB,0
