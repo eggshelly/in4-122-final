@@ -72,7 +72,7 @@ public class Bejeweled extends Game{
         Scanner input = new Scanner(System.in);
         String userInput = "";
         while(!userInput.equals("Q")){
-            System.out.println("Score: " + score);
+            System.out.println(playerName + "'s score: " + score);
             System.out.println("Press 'Q' to quit game, \n'M' to make move:");
             userInput = input.nextLine();
             while(!userInput.equals("Q") && !userInput.equals("M")){
@@ -103,9 +103,10 @@ public class Bejeweled extends Game{
 //                            //movePiecesDown();
 //                            //printBoard();
 //                        }
-                        if(!move)
+                        if(!move) {
                             System.out.println("No matches found");
-                        printBoard();
+                            printBoard();
+                        }
                     }
                     else {
                         System.out.println("Both pieces must be next to each other");
@@ -180,6 +181,7 @@ public class Bejeweled extends Game{
         checkMatch();
         if (matched.size() != 0)
         {
+            System.out.println((matched.size()/3) + " matches found");
             deleteMatched();
         }
     }
@@ -197,7 +199,7 @@ public class Bejeweled extends Game{
                     if (i == mRow && j == mCol)
                     {
                         board[i][j] = EMPTY;
-                        System.out.println("Deleted match on row " + i);
+                        System.out.println("Deleted piece on row " + i + " column " + j);
                         score += 1;
                         //printBoard();
                     }
@@ -211,6 +213,7 @@ public class Bejeweled extends Game{
         }
         printBoard();
         movePiecesDown();
+        printBoard();
         matched.clear();
         checkBoard();
     }
