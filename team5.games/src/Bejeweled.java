@@ -5,9 +5,9 @@ import java.util.Scanner;
 public class Bejeweled extends Game{
     private boolean isMatched;
 
-    public Bejeweled()
+    public Bejeweled(String playerName)
     {
-        super(8, 8);
+        super(8, 8, playerName);
         isMatched = false;
         initializeBoard();
     }

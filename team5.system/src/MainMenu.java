@@ -46,12 +46,12 @@ public class MainMenu {
             numPlayers = 1;
             if (chosenGame.equals("Columns"))
             {
-                game1 = new Columns();
+                game1 = new Columns(playerName);
                 game1.run();
             }
             else if (chosenGame.equals("Bejeweled"))
             {
-                game1 = new Bejeweled();
+                game1 = new Bejeweled(playerName);
                 game1.run();
             }
         }
@@ -64,8 +64,8 @@ public class MainMenu {
             numPlayers = 2;
             if (chosenGame.equals("Columns"))
             {
-                game1 = new Columns();
-                game2 = new Columns();
+                game1 = new Columns(playerName);
+                game2 = new Columns(secondPlayer);
                 game1.run();
                 game2.run();
             }

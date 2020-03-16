@@ -9,9 +9,9 @@ public class Columns extends Game {
     private ColumnsPiece faller;
     private ColumnsGUI GUI;
 
-    public Columns()
+    public Columns(String playerName)
     {
-        super(13, 6);
+        super(13, 6, playerName);
         changed = false;
         isMatched = false;
         frozen = false;
@@ -44,7 +44,7 @@ public class Columns extends Game {
     @Override
     public void run()
     {
-        GUI.runGUI();
+        GUI.runGUI(playerName);
     }
 
     @Override

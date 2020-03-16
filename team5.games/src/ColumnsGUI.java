@@ -15,11 +15,13 @@ public class ColumnsGUI {
     private JMenu menu;
     private JMenuItem start;
     private Columns game;
+    private String playerName;
 
-    public void runGUI()
+    public void runGUI(String newPlayerName)
     {
-        game = new Columns();
-        frame = new JFrame("Team 5 - Columns");
+        playerName = newPlayerName;
+        game = new Columns(playerName);
+        frame = new JFrame("Columns - " + game.getPlayerName().toUpperCase());
         gameScreen = new JPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(gameScreen);
@@ -45,7 +47,7 @@ public class ColumnsGUI {
                     timer.stop();
                 }
                 frame.getContentPane().removeAll();
-                game = new Columns();
+                game = new Columns(playerName);
                 setGameScreen();
                 frame.setVisible(true);
 
