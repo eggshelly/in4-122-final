@@ -5,13 +5,13 @@ public class TestObj2 {
 
     public static void columnsTest()
     {
-        Game c = new Columns();
+        Game c = new Columns("John");
         c.run();
     }
 
     public static void bejeweledTest()
     {
-        Game b = new Bejeweled();
+        Game b = new Bejeweled("John");
         b.run();
     }
 

@@ -5,20 +5,23 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ColumnsGUI {
-    private static Timer timer;
-    private static JFrame frame;
-    private static JPanel gameScreen;
-    private static JPanel boardPanel;
-    private static JPanel infoPanel;
-    private static JLabel scoreLabel;
-    private static JMenuBar menuBar;
-    private static JMenu menu;
-    private static JMenuItem start;
-    private static Columns game = new Columns();
+    private Timer timer;
+    private JFrame frame;
+    private JPanel gameScreen;
+    private JPanel boardPanel;
+    private JPanel infoPanel;
+    private JLabel scoreLabel;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    private JMenuItem start;
+    private Columns game;
+    private String playerName;
 
-    public void runGUI()
+    public void runGUI(String newPlayerName)
     {
-        frame = new JFrame("Team 5 - Columns");
+        playerName = newPlayerName;
+        game = new Columns(playerName);
+        frame = new JFrame("Columns - " + game.getPlayerName().toUpperCase());
         gameScreen = new JPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setContentPane(gameScreen);
@@ -44,7 +47,7 @@ public class ColumnsGUI {
                     timer.stop();
                 }
                 frame.getContentPane().removeAll();
-                game = new Columns();
+                game = new Columns(playerName);
                 setGameScreen();
                 frame.setVisible(true);
 

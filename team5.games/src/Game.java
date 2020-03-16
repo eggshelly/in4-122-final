@@ -7,14 +7,16 @@ public abstract class Game {
 	public ArrayList<ArrayList<Integer>> matched;
 	public static final int EMPTY = 0;
 	public int score;
+	public String playerName;
 
-	public Game(int newRows, int newCols)
+	public Game(int newRows, int newCols, String newPlayerName)
 	{
 		rows = newRows;
 		cols = newCols;
 		board = new int[rows][cols];
 		matched = new ArrayList<ArrayList<Integer>>();
 		score = 0;
+		playerName = newPlayerName;
 	}
 
 	public abstract void initializeBoard();
@@ -50,5 +52,10 @@ public abstract class Game {
 	public int getScore()
 	{
 		return score;
+	}
+
+	public String getPlayerName()
+	{
+		return playerName;
 	}
 }

@@ -4,7 +4,8 @@ public class MainMenu {
     public static String[] games = {"Columns", "Bejeweled"};
     private static String[] players = new String[2];
     private static int numPlayers = 0;
-    private static Game game;
+    private static Game game1;
+    private static Game game2;
     private static GameManager gameManager = new GameManager();
 
     public static void main(String[] args){
@@ -45,13 +46,13 @@ public class MainMenu {
             numPlayers = 1;
             if (chosenGame.equals("Columns"))
             {
-                game = new Columns();
-                game.run();
+                game1 = new Columns(playerName);
+                game1.run();
             }
             else if (chosenGame.equals("Bejeweled"))
             {
-                game = new Bejeweled();
-                game.run();
+                game1 = new Bejeweled(playerName);
+                game1.run();
             }
         }
         else{
@@ -61,6 +62,13 @@ public class MainMenu {
             System.out.println(secondPlayer + " has joined. Starting two-player game.");
             players[1] = secondPlayer;
             numPlayers = 2;
+            if (chosenGame.equals("Columns"))
+            {
+                game1 = new Columns(playerName);
+                game2 = new Columns(secondPlayer);
+                game1.run();
+                game2.run();
+            }
         }
         scan.close();
 
