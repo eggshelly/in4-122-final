@@ -1,3 +1,5 @@
 Jeimeil,1
 ErickB,0
 Raiki,0
+,0
+amanda,0

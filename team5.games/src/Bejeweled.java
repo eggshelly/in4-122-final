@@ -3,32 +3,16 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Bejeweled extends Game{
-    private int rows;
-    private int cols;
     private boolean isMatched;
-    private ArrayList<ArrayList<Integer>> matched;
-    private int[][] board;
-    private static final int EMPTY = 0;
-    private int score;
-
-    // makeBoard(Board)
-    // makeMove(keyStroke)
-    // checkMove()
-    // updateBoard()
-    // printBoard()
-    // generatePiece()
 
     public Bejeweled()
     {
-        rows = 8;
-        cols = 8;
+        super(8, 8);
         isMatched = false;
-        matched = new ArrayList<ArrayList<Integer>>();
-        board = new int[rows][cols];
-        score = 0;
         initializeBoard();
     }
 
+    @Override
     public void initializeBoard()
     {
         Random r = new Random();

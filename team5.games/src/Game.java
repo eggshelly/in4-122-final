@@ -8,32 +8,19 @@ public abstract class Game {
 	public static final int EMPTY = 0;
 	public int score;
 
-	public Game()
+	public Game(int newRows, int newCols)
 	{
-		rows = 13;
-		cols = 6;
+		rows = newRows;
+		cols = newCols;
 		board = new int[rows][cols];
 		matched = new ArrayList<ArrayList<Integer>>();
 		score = 0;
 	}
 
+	public abstract void initializeBoard();
 	public abstract void checkMatch();
 	public abstract void run();
 	public abstract void printBoard();
-	//	public abstract void makeMove();
-	//	public abstract void checkMove();
-	//	public abstract void generatePiece();
-
-	public void initializeBoard()
-	{
-		for (int i = 0; i < rows; i++)
-		{
-			for (int j = 0; j < cols; j++)
-			{
-				board[i][j] = EMPTY;
-			}
-		}
-	}
 
 	public int getCell(int row, int col)
 	{

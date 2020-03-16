@@ -43,8 +43,16 @@ public class MainMenu {
         if(secondPlayer.equals("")){
             System.out.println("Starting a single player game.");
             numPlayers = 1;
-            game = new Columns();
-            game.run();
+            if (chosenGame.equals("Columns"))
+            {
+                game = new Columns();
+                game.run();
+            }
+            else if (chosenGame.equals("Bejeweled"))
+            {
+                game = new Bejeweled();
+                game.run();
+            }
         }
         else{
             if (!(gameManager.contains(secondPlayer))) {

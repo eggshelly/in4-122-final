@@ -11,7 +11,7 @@ public class Columns extends Game {
 
     public Columns()
     {
-        super();
+        super(13, 6);
         changed = false;
         isMatched = false;
         frozen = false;
@@ -20,6 +20,19 @@ public class Columns extends Game {
         initializeBoard();
     }
 
+    @Override
+    public void initializeBoard()
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            for (int j = 0; j < cols; j++)
+            {
+                board[i][j] = EMPTY;
+            }
+        }
+    }
+
+    @Override
     public void checkMatch()
     {
         handleHorizontalMatch();
@@ -28,11 +41,13 @@ public class Columns extends Game {
         handleLeftDiagonalMatch();
     }
 
+    @Override
     public void run()
     {
         GUI.runGUI();
     }
 
+    @Override
     public void printBoard()
     {
         int num_spaces = 0;
