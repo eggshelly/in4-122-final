@@ -1,7 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.Scanner;
 
-public class Bejeweled {
+public class Bejeweled extends Game{
     private int rows;
     private int cols;
     private boolean isMatched;
@@ -40,23 +41,96 @@ public class Bejeweled {
             }
         }
 
-        if(checkBoard())
-            deleteMatched();
+        //checkBoard();
     }
 
-    public void makeMove(int row1, int col1, int row2, int col2){
-        if(isValidRow(row1) && isValidCol(col1) && isValidRow(row2) && isValidCol(col2)){
-            //check if row 1 & col1 is next to row2 & col2
-            int temp = board[row1][col1];
+    public boolean makeMove(int row1, int col1, int row2, int col2){
+        int temp = 0;
+        if(isValidRow(row1) && isValidCol(col1) && isValidRow(row2) && isValidCol(col2)) {
+            temp = board[row1][col1];
             board[row1][col1] = board[row2][col2];
             board[row2][col2] = temp;
+            printBoard();
+
+            //checkMatch();
+            if (matched.size() != 0) {
+                deleteMatched();
+                return true;
+            } else {
+                //moving pieces back after no match is found
+                //System.out.println("No matches found");
+                board[row2][col2] = board[row1][col1];
+                board[row1][col1] = temp;
+                return false;
+            }
         }
-        if(checkBoard())
-            deleteMatched();
+        return false;
+
 
     }
 
-    public boolean checkBoard()
+    @Override
+    public void run() {
+        initializeBoard();
+        System.out.println("WELCOME TO BEJEWELED");
+        playConsoleGame();
+    }
+
+    private void playConsoleGame()
+    {
+        printBoard();
+        Scanner input = new Scanner(System.in);
+        String userInput = "";
+        while(!userInput.equals("Q")){
+            System.out.println("Press 'Q' to quit game, \n'M' to make move:");
+            userInput = input.nextLine();
+            while(!userInput.equals("Q") && !userInput.equals("M")){
+                System.out.println("Please enter either 'Q' to quit game or 'M' to make move:");
+                userInput = input.nextLine();
+            }
+            if(userInput.equals("M")){
+                System.out.println("Please enter first row:");
+                String row1 = input.nextLine();
+                System.out.println("Please enter first column:");
+                String col1 = input.nextLine();
+                System.out.println("Please enter second row:");
+                String row2 = input.nextLine();
+                System.out.println("Please enter second column:");
+                String col2 = input.nextLine();
+
+                try {
+                    int intRow1 = Integer.parseInt(row1);
+                    int intRow2 = Integer.parseInt(row2);
+                    int intCol1 = Integer.parseInt(col1);
+                    int intCol2 = Integer.parseInt(col2);
+                    if (!isValidRow(intRow1) || !isValidCol(intCol1) || !isValidRow(intRow2) || !isValidCol(intCol2))
+                        System.out.println("Please enter a correct row or column.");
+                    else if(intRow1 == intRow2 || intCol1 == intCol2) {
+                        boolean move = makeMove(intRow1, intCol1, intRow2, intCol2);
+                        if(move){
+                            printBoard();
+                            movePiecesDown();
+                            //printBoard();
+                        }
+                        else
+                            System.out.println("No matches found");
+                        printBoard();
+                    }
+                    else {
+                        System.out.println("Both pieces must be next to each other");
+                    }
+                } catch (NumberFormatException e) {
+                    System.out.println("Please enter a correct row or column.");
+                }
+
+
+            }
+        }
+
+    }
+
+    @Override
+    public void checkMatch()
     {
         isMatched = false;
         for (int x = 0; x < rows - 2; x++)
@@ -104,11 +178,19 @@ public class Bejeweled {
                 }
             }
         }
-        return isMatched;
+        //return isMatched;
 //        if (matched.size() != 0)
 //        {
 //            deleteMatched();
 //        }
+    }
+
+    private void checkBoard(){
+        checkMatch();
+        if (matched.size() != 0)
+        {
+            deleteMatched();
+        }
     }
 
     public void deleteMatched()
@@ -175,12 +257,21 @@ public class Bejeweled {
         }
     }
 
-    private void printBoard()
+    @Override
+    public void printBoard()
     {
+        System.out.println("   0 1 2 3 4 5 6 7");
+        System.out.println("  -----------------");
         for (int i = 0; i < rows; i++)
         {
-
+            System.out.print(i + " |");
+            for (int j = 0; j < cols; j++)
+            {
+                System.out.print(board[i][j] + "|");
+            }
+            System.out.println();
         }
+        System.out.println("  ---------------");
     }
 
 
