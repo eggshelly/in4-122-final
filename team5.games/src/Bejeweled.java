@@ -41,7 +41,7 @@ public class Bejeweled extends Game{
             }
         }
 
-        //checkBoard();
+        checkMatch();
     }
 
     public boolean makeMove(int row1, int col1, int row2, int col2){
@@ -52,7 +52,7 @@ public class Bejeweled extends Game{
             board[row2][col2] = temp;
             printBoard();
 
-            //checkMatch();
+            checkMatch();
             if (matched.size() != 0) {
                 deleteMatched();
                 return true;
