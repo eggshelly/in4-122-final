@@ -25,7 +25,8 @@ public class Bejeweled extends Game{
             }
         }
 
-        checkMatch();
+        checkBoard();
+        score = 0;
     }
 
     public boolean makeMove(int row1, int col1, int row2, int col2){
@@ -34,17 +35,22 @@ public class Bejeweled extends Game{
             temp = board[row1][col1];
             board[row1][col1] = board[row2][col2];
             board[row2][col2] = temp;
+            System.out.println("pieces swapped");
             printBoard();
+            //System.out.println("here");
 
             checkMatch();
             if (matched.size() != 0) {
+                System.out.println((matched.size()/3) + " matches found");
                 deleteMatched();
+                //System.out.println("matched");
                 return true;
             } else {
                 //moving pieces back after no match is found
                 //System.out.println("No matches found");
                 board[row2][col2] = board[row1][col1];
                 board[row1][col1] = temp;
+                System.out.println("pieces swapped back");
                 return false;
             }
         }
@@ -55,7 +61,7 @@ public class Bejeweled extends Game{
 
     @Override
     public void run() {
-        initializeBoard();
+        //initializeBoard();
         System.out.println("WELCOME TO BEJEWELED");
         playConsoleGame();
     }
@@ -66,6 +72,7 @@ public class Bejeweled extends Game{
         Scanner input = new Scanner(System.in);
         String userInput = "";
         while(!userInput.equals("Q")){
+            System.out.println("Score: " + score);
             System.out.println("Press 'Q' to quit game, \n'M' to make move:");
             userInput = input.nextLine();
             while(!userInput.equals("Q") && !userInput.equals("M")){
@@ -89,14 +96,14 @@ public class Bejeweled extends Game{
                     int intCol2 = Integer.parseInt(col2);
                     if (!isValidRow(intRow1) || !isValidCol(intCol1) || !isValidRow(intRow2) || !isValidCol(intCol2))
                         System.out.println("Please enter a correct row or column.");
-                    else if(intRow1 == intRow2 || intCol1 == intCol2) {
+                    else if((intRow1 == intRow2 || intCol1 == intCol2) && ((intRow1+1) == intRow2 || (intRow1-1) == intRow2 ||(intCol1+1) == intCol2 || (intCol1-1) == intCol2)) {
                         boolean move = makeMove(intRow1, intCol1, intRow2, intCol2);
-                        if(move){
-                            printBoard();
-                            movePiecesDown();
-                            //printBoard();
-                        }
-                        else
+//                        if(move){
+//                            //printBoard();
+//                            //movePiecesDown();
+//                            //printBoard();
+//                        }
+                        if(!move)
                             System.out.println("No matches found");
                         printBoard();
                     }
@@ -190,14 +197,20 @@ public class Bejeweled extends Game{
                     if (i == mRow && j == mCol)
                     {
                         board[i][j] = EMPTY;
+                        System.out.println("Deleted match on row " + i);
+                        score += 1;
+                        //printBoard();
                     }
                     //movePiecesDown();
                     //freezeFaller();
                     isMatched = false;
                 }
-
             }
+//            printBoard();
+//            movePiecesDown();
         }
+        printBoard();
+        movePiecesDown();
         matched.clear();
         checkBoard();
     }
@@ -215,6 +228,7 @@ public class Bejeweled extends Game{
     //generates new pieces to fill the board
     public void movePiecesDown()
     {
+        System.out.println("New pieces added to board");
         Random r = new Random();
 
         for (int i = rows-1; i > -1; i--)
@@ -255,7 +269,7 @@ public class Bejeweled extends Game{
             }
             System.out.println();
         }
-        System.out.println("  ---------------");
+        System.out.println("  -----------------");
     }
 
 
