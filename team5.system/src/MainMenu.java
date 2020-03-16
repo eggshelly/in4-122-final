@@ -8,6 +8,18 @@ public class MainMenu {
     private static Game game2;
     private static GameManager gameManager = new GameManager();
 
+    public static void resolveScores(int p1, int p2) {
+        System.out.println("Final Scores:");
+        System.out.println(players[0] + ": " + p1 + " vs " + players[1] + ": " + p2);
+        if (p1 > p2) {
+            System.out.println(players[0] + " Wins!");
+        } else if (p2 > p1) {
+            System.out.println(players[1] + " Wins!");
+        } else {
+            System.out.println("It's a Tie!");
+        }
+    }
+
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
         System.out.println("Welcome to The Game Environment");
@@ -54,6 +66,7 @@ public class MainMenu {
                 game1 = new Bejeweled(playerName);
                 game1.run();
             }
+            System.out.println("Final Score: " + game1.getScore());
         }
         else{
             if (!(gameManager.contains(secondPlayer))) {
@@ -68,8 +81,22 @@ public class MainMenu {
                 game2 = new Columns(secondPlayer);
                 game1.run();
                 game2.run();
+            } else if (chosenGame.equals("Bejeweled"))
+            {
+                game1 = new Bejeweled(playerName);
+                game1.run();
+                game2 = new Bejeweled(secondPlayer);
+                game2.run();
             }
+            int p1Score = game1.getScore();
+            int p2Score = game2.getScore();
+            resolveScores(p1Score,p2Score);
         }
+        System.out.println("Updating Player(s) Info");
+        for (String pname : players) {
+            gameManager.increment(pname);
+        }
+        System.out.println("Player(s) Info Updated.");
         scan.close();
 
     }
