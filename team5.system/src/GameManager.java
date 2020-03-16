@@ -81,6 +81,11 @@ public class GameManager {
         return false;
     }
 
+    public void addPlayer(String player) {
+        Players.add(new Player(player,0));
+        savePlayers();
+    }
+
     public static void main(String[] args) {
         GameManager a = new GameManager();
     }

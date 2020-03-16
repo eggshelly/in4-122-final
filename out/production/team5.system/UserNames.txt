@@ -1,2 +1,3 @@
 Jeimeil,1
 ErickB,0
+Raiki,0

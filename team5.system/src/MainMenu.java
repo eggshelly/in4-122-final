@@ -5,6 +5,7 @@ public class MainMenu {
     private static String[] players = new String[2];
     private static int numPlayers = 0;
     private static Game game;
+    private static GameManager gameManager = new GameManager();
 
     public static void main(String[] args){
         Scanner scan = new Scanner(System.in);
@@ -32,6 +33,9 @@ public class MainMenu {
         System.out.println("Enter your profile name.");
         System.out.print("Name: ");
         String playerName = scan.nextLine();
+        if (!(gameManager.contains(playerName))) {
+            gameManager.addPlayer(playerName);
+        }
         players[0] = playerName;
         System.out.println("Will you have another player? Enter the name if yes. Otherwise, leave it blank and press enter.");
         System.out.print("Name: ");
@@ -43,6 +47,9 @@ public class MainMenu {
             game.run();
         }
         else{
+            if (!(gameManager.contains(secondPlayer))) {
+                gameManager.addPlayer(secondPlayer);
+            }
             System.out.println(secondPlayer + " has joined. Starting two-player game.");
             players[1] = secondPlayer;
             numPlayers = 2;
