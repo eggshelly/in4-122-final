@@ -3,3 +3,5 @@ ErickB,0
 Raiki,0
 ,0
 amanda,0
+john,0
+amana,0

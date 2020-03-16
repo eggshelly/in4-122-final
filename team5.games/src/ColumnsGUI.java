@@ -5,19 +5,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ColumnsGUI {
-    private static Timer timer;
-    private static JFrame frame;
-    private static JPanel gameScreen;
-    private static JPanel boardPanel;
-    private static JPanel infoPanel;
-    private static JLabel scoreLabel;
-    private static JMenuBar menuBar;
-    private static JMenu menu;
-    private static JMenuItem start;
-    private static Columns game = new Columns();
+    private Timer timer;
+    private JFrame frame;
+    private JPanel gameScreen;
+    private JPanel boardPanel;
+    private JPanel infoPanel;
+    private JLabel scoreLabel;
+    private JMenuBar menuBar;
+    private JMenu menu;
+    private JMenuItem start;
+    private Columns game;
 
     public void runGUI()
     {
+        game = new Columns();
         frame = new JFrame("Team 5 - Columns");
         gameScreen = new JPanel();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
