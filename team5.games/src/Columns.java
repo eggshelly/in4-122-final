@@ -1,3 +1,5 @@
+import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
@@ -585,10 +587,18 @@ public class Columns extends Game {
 
     private void printMatchedCells(int row, int col)
     {
+        String chars = "   ";
         if (board[row][col] == getMatchedCell())
         {
             int cell = board[row][col];
-            System.out.print('*' + Integer.toString(cell) + '*');
+            for (ArrayList<Integer> match: matched)
+            {
+                if (row == match.get(0) && col == match.get(1))
+                {
+                    chars = "**";
+                }
+            }
+            System.out.print(chars.charAt(0) + Integer.toString(cell) + chars.charAt(1));
         }
         else
         {
