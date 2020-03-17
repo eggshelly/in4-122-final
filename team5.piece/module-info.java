@@ -1,3 +1,3 @@
 module team5.piece{
-    exports team5.game;
+    exports team5.games;
 }
