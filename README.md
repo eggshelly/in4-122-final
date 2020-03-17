@@ -5,10 +5,9 @@ JDK 13.0.1
 ## Loading Instructions
 Open cmd
 Go to the directory you have the jar file saved at
-Type java -jar <filename>.jar
+Type java -jar <filename>.jar (if that doesn’t work then type java -cp <filename>.jar Main)
   >This file is in **in4-122-final-master\in4122.jar**
-  >(if that doesn’t work then type java -cp <filename>.jar Main)
-
+ 
 
 
 ## Design Doc/Further Game Instructions
