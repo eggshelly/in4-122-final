@@ -1,5 +1,7 @@
-Jeimeil,5
+Jeimeil,6
 ErickB,0
 Raiki,4
-amanda,0
-john,0
+amanda,12
+john,4
+amana,1
+jose,0

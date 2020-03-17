@@ -126,7 +126,6 @@ public class ColumnsGUI {
             public void actionPerformed(ActionEvent e) {
                 if (game.getNumMatched() > 0)
                 {
-                    timer.setDelay(20000);
                     game.deleteMatched();
                     timer.setDelay(500);
                 }
@@ -234,6 +233,7 @@ public class ColumnsGUI {
             scoreLabel.setForeground(Color.WHITE);
             infoPanel.setBackground(Color.RED);
             scoreLabel.setFont(new Font("Calibri", Font.BOLD, 20));
+            System.out.println("Final Score: " + game.getScore());
         }
 
         else

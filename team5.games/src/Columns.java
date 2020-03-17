@@ -73,6 +73,73 @@ public class Columns extends Game {
         System.out.println(" " + dash + " ");
     }
 
+    @Override
+    public void playConsoleGame()
+    {
+        Scanner input = new Scanner(System.in);
+        System.out.println("WELCOME TO COLUMNS, " + playerName.toUpperCase());
+        printBoard();
+
+        while (true)
+        {
+            System.out.println(playerName.toUpperCase() + "'s score: " + score);
+            System.out.println("Press 'F' to create faller,'R' to rotate,'<' to move left," +
+                    "'>' to move right, 'ENTER' to drop, 'Q' to quit:");
+            String command = input.nextLine();
+
+            if (command.isEmpty())
+            {
+                if (matched.size() > 0)
+                {
+                    deleteMatched();
+                    printBoard();
+                }
+                else
+                {
+                    dropFaller();
+                    checkMatch();
+                    printBoard();
+                }
+            }
+            else if (!command.isEmpty())
+            {
+                if (command.equalsIgnoreCase("F")) {
+                    Random rand = new Random();
+                    int randCol = rand.nextInt(cols) + 1;
+                    initializeFaller(randCol);
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase("R"))
+                {
+                    rotateFaller();
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase("<"))
+                {
+                    moveFallerLeft();
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase(">"))
+                {
+                    moveFallerRight();
+                    printBoard();
+                }
+                if (command.equalsIgnoreCase("Q"))
+                {
+                    break;
+                }
+            }
+
+            if (isGameOver())
+            {
+                handleGameOver();
+                printBoard();
+                System.out.println("GAME OVER");
+                break;
+            }
+        }
+    }
+
     public boolean isFrozen()
     {
         return frozen;
@@ -540,65 +607,5 @@ public class Columns extends Game {
             }
         }
         return cell;
-    }
-
-    private void playConsoleGame()
-    {
-        Scanner input = new Scanner(System.in);
-        System.out.println("WELCOME TO COLUMNS");
-        printBoard();
-        System.out.println("Press 'F' to create faller,\n'R' to rotate,\n'<' to move left," +
-                "\n'>' to move right,\n'ENTER' to drop:");
-        while (true)
-        {
-            String command = input.nextLine();
-
-            if (command.isEmpty())
-            {
-                if (matched.size() > 0)
-                {
-                    deleteMatched();
-                    printBoard();
-                }
-                else
-                {
-                    dropFaller();
-                    checkMatch();
-                    printBoard();
-                }
-            }
-            else if (!command.isEmpty())
-            {
-                if (command.equalsIgnoreCase("F")) {
-                    Random rand = new Random();
-                    int randCol = rand.nextInt(cols) + 1;
-                    initializeFaller(randCol);
-                    printBoard();
-                }
-                if (command.equalsIgnoreCase("R"))
-                {
-                    rotateFaller();
-                    printBoard();
-                }
-                if (command.equalsIgnoreCase("<"))
-                {
-                    moveFallerLeft();
-                    printBoard();
-                }
-                if (command.equalsIgnoreCase(">"))
-                {
-                    moveFallerRight();
-                    printBoard();
-                }
-            }
-
-            if (isGameOver())
-            {
-                handleGameOver();
-                printBoard();
-                System.out.println("GAME OVER");
-                break;
-            }
-        }
     }
 }

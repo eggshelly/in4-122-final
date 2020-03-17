@@ -62,24 +62,25 @@ public class Bejeweled extends Game{
     @Override
     public void run() {
         //initializeBoard();
-        System.out.println("WELCOME TO BEJEWELED");
+        System.out.println("WELCOME TO BEJEWELED, " + playerName.toUpperCase());
         playConsoleGame();
     }
 
-    private void playConsoleGame()
+    @Override
+    public void playConsoleGame()
     {
         printBoard();
         Scanner input = new Scanner(System.in);
         String userInput = "";
-        while(!userInput.equals("Q")){
-            System.out.println(playerName + "'s score: " + score);
+        while(!userInput.equalsIgnoreCase("Q")){
+            System.out.println(playerName.toUpperCase() + "'s score: " + score);
             System.out.println("Press 'Q' to quit game, \n'M' to make move:");
             userInput = input.nextLine();
-            while(!userInput.equals("Q") && !userInput.equals("M")){
+            while(!userInput.equalsIgnoreCase("Q") && !userInput.equalsIgnoreCase("M")){
                 System.out.println("Please enter either 'Q' to quit game or 'M' to make move:");
                 userInput = input.nextLine();
             }
-            if(userInput.equals("M")){
+            if(userInput.equalsIgnoreCase("M")){
                 System.out.println("Please enter first row:");
                 String row1 = input.nextLine();
                 System.out.println("Please enter first column:");
@@ -200,7 +201,7 @@ public class Bejeweled extends Game{
                     {
                         board[i][j] = EMPTY;
                         System.out.println("Deleted piece on row " + i + " column " + j);
-                        score += 1;
+                        score += 10;
                         //printBoard();
                     }
                     //movePiecesDown();

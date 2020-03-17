@@ -65,8 +65,8 @@ public class MainMenu {
             {
                 game1 = new Bejeweled(playerName);
                 game1.run();
+                System.out.println("Final Score: " + game1.getScore());
             }
-            System.out.println("Final Score: " + game1.getScore());
         }
         else{
             if (!(gameManager.contains(secondPlayer))) {
@@ -78,9 +78,9 @@ public class MainMenu {
             if (chosenGame.equals("Columns"))
             {
                 game1 = new Columns(playerName);
+                game1.playConsoleGame();
                 game2 = new Columns(secondPlayer);
-                game1.run();
-                game2.run();
+                game2.playConsoleGame();
             } else if (chosenGame.equals("Bejeweled"))
             {
                 game1 = new Bejeweled(playerName);

@@ -23,6 +23,7 @@ public abstract class Game {
 	public abstract void checkMatch();
 	public abstract void run();
 	public abstract void printBoard();
+	public abstract void playConsoleGame();
 
 	public int getCell(int row, int col)
 	{
