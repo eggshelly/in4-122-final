@@ -7,6 +7,8 @@ Open cmd
 Go to the directory you have the jar file saved at
 Type java -jar <filename>.jar (if that doesn’t work then type java -cp <filename>.jar Main)
   >This file is in **in4-122-final-master\in4122.jar**
+  
+**If you cannot run it please refer to the Debugging section of the Design Doc**
  
 
 
