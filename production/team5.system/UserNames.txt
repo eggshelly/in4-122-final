@@ -5,3 +5,8 @@ amanda,12
 john,4
 amana,1
 jose,0
+Egg,0
+yes,0
+egg,1
+al,0
+e,0

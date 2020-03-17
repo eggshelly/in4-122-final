@@ -72,6 +72,7 @@ public class Columns extends Game {
             System.out.println("|");
         }
         dash = dash.repeat(num_spaces);
+        //dash = new String(new char[num_spaces]).replace("\0", dash);
         System.out.println(" " + dash + " ");
     }
 
